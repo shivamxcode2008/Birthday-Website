@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #FFF8F3; /* Warm Cream */
+  --color-surface: #ffffff;
+  --color-primary: #F7A8B8; /* Blush */
+  --color-accent: #FFD6C9; /* Soft Peach */
+  --color-text: #4A3735; /* Warm Charcoal */
+  --color-muted: #8c7674;
+  --color-border: #fcebe9;
+  --color-glow: rgba(247, 168, 184, 0.35);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased overflow-x-hidden;
+    /* Soft global background pattern/gradient */
+    background-image: 
+      radial-gradient(circle at top left, var(--color-accent) 0%, transparent 40%),
+      radial-gradient(circle at bottom right, var(--color-accent) 0%, transparent 40%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-text;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .safe-padding {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+}
+
+/* Ensure smooth scrolling globally except when reduced motion is preferred */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
